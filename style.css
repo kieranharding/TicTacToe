@@ -1,1 +1,63 @@
-ÿþ
+body {
+  font-family: 'Gloria Hallelujah', cursive;
+  color: #443;
+}
+
+.title {
+  position: relative;
+  top: -1em;
+  left: 4rem;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  /*Paper background from http://lea.verou.me/css3patterns/#lined-paper*/
+  background-color: #fff;
+  background-image:
+    /*TODO: Use media query to adjust line distance and margin size on mobile*/
+    linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+    linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 1.2em;
+  min-height: 500px;
+}
+
+#page-header {
+  background-color: #FFF;
+  background-image:
+    linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px);
+  /*TODO: Figure out how tall the header margin shoule be relative to lines. Add holes?*/
+  padding: 2.2em;
+  margin-top: -1em;
+  max-height: 2.2em;
+  text-align: center;
+}
+
+#board {
+  width: 240px;
+  height: 240px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.square {
+  width: 30.6666667%;
+  min-height: 30.6666667%;
+  float: left;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 40px;
+}
+
+.one, .two, .four, .five {
+  border-right: 4px groove #eee;
+  border-bottom: 4px groove #eee;
+}
+
+.three, .six {
+  border-bottom: 4px groove #eee;
+}
+
+.seven, .eight {
+  border-right: 4px groove #eee;
+}
