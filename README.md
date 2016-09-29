@@ -12,6 +12,10 @@ like an opportunity to use a State Design Pattern.
 * Modeling the board in Javascript.
   * Using a 2D array is obvious; rows and columns very easy to check.
   * Using a 1D array to 9 is another simple option.
+  * For storing all positions, I can also parse the visible board each time. I
+  did this for the Pomodoro timer in some cases, but I think it starts to get
+  confused jumping between Javascript and HTML for where the information is.
 * Start with a 'Two Player' mode.
-* When the time comes, the second answer on [this page](https://www.quora.com/Is-there-a-way-to-never-lose-at-Tic-Tac-Toe) apparently
-shows how to never lose, so use that for the computer player.
+* When the time comes, the second answer on
+[this page](https://www.quora.com/Is-there-a-way-to-never-lose-at-Tic-Tac-Toe)
+apparently shows how to never lose, so use that for the computer player.
