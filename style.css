@@ -1,3 +1,7 @@
+html {
+  /*font-size: 62.5%;*/
+}
+
 body {
   font-family: 'Gloria Hallelujah', cursive;
   color: #443;
@@ -33,11 +37,34 @@ body {
   text-align: center;
 }
 
+#options {
+  width: 360px;
+  margin: 0 auto;
+  display: none;
+}
+
+#options .selected {
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
+span:hover {
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
+#start-game {
+  width: 8em;
+  text-align: center;
+  margin: 0 auto;
+}
+
 #board {
-  width: 240px;
-  height: 240px;
+  width: 24rem;
+  height: 24rem;
   margin: 0 auto;
   padding-top: 20px;
+  display: none;
 }
 
 .square {
@@ -46,7 +73,7 @@ body {
   float: left;
   text-align: center;
   vertical-align: middle;
-  font-size: 40px;
+  font-size: 3rem;
 }
 
 .one, .two, .four, .five {

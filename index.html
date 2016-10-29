@@ -2,8 +2,9 @@
 <html>
 <head>
   <title>Tic Tac Toe Game</title>
-  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/javascript-state-machine/2.0.0/state-machine.min.js" charset="utf-8"></script> -->
   <script src="client.js" charset="utf-8"></script>
 </head>
 <body>
@@ -11,6 +12,19 @@
     <h1 class="title">Tic Tac Toe</h1>
   </div>
   <div class="container">
+    <div id="options">
+      <div id="option-players">
+        <span class="option" id="one-player">One Player</span>
+        <span class="option" id="two-player">Two Players</span>
+      </div>
+      <div id="option-symbol">
+        <span class="option" id="x">X</span>
+        <span class="option" id="o">O</span>
+      </div>
+      <div id="start-game">
+        <span>Start</span>
+      </div>
+    </div>
     <div id="board">
       <div class="square one">1</div>
       <div class="square two">2</div>
