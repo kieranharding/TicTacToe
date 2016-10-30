@@ -19,10 +19,6 @@ function State (target, name, player) {
     element.style.display = 'none'
   }
 
-  function showWinner (board) {
-    // body...
-  }
-
   function checkWinner (squares, sym) {
     var runs = []
     var result = false
@@ -94,6 +90,27 @@ function State (target, name, player) {
     }
   }
 
+  if (name === 'gameover') {
+    this.entry = function () {
+      var nextTurn = this.target.gameover.innerText.startsWith('O')
+        ? this.target.states.oturn
+        : this.target.states.xturn
+
+      show(this.target.gameover)
+
+      function done () {
+        this.target.changeState(nextTurn)
+      }
+
+      setTimeout(done.bind(this), 3000)
+    }
+
+    this.exit = function () {
+      hide(this.target.gameover)
+      this.target.resetBoard()
+    }
+  }
+
   if (/turn/.test(name) && /(human|computer)/.test(player)) {
     // If this state is somebody'e turn and we were passed a human or computer
     // If given, player should be either 'human' or 'computer'. Use this to choose
@@ -107,7 +124,10 @@ function State (target, name, player) {
         // Computer make a move.
         // Check if game over
         // If continuing, go to next turn
-        var nextTurn = name === 'xturn' ? this.target.states.oturn : this.target.states.xturn
+        var nextTurn = name === 'xturn'
+          ? this.target.states.oturn
+          : this.target.states.xturn
+
         this.target.changeState(nextTurn)
       }
     }
@@ -120,11 +140,14 @@ function State (target, name, player) {
       var t = evt.target
       if (t.classList && t.classList.contains('square') && t.innerText === '') {
         t.innerText = name.substr(0, 1).toUpperCase()
-        console.log(checkWinner(this.target.dom_squares, t.innerText))
-        if (/* checkWinner(this.target.dom_squares, t.innerText) */ false) {
-          showWinner(this.target)
+        // console.log(checkWinner(this.target.dom_squares, t.innerText))
+        if (checkWinner(this.target.dom_squares, t.innerText)) {
+          this.target.gameover.innerText = t.innerText + this.target.winnerText
+          this.target.changeState(this.target.states.gameover)
         } else {
-          var nextTurn = name === 'xturn' ? this.target.states.oturn : this.target.states.xturn
+          var nextTurn = name === 'xturn'
+            ? this.target.states.oturn
+            : this.target.states.xturn
           this.target.changeState(nextTurn)
         }
       }
@@ -135,6 +158,7 @@ function State (target, name, player) {
 function Game () {
   this.board = document.getElementById('board')
   this.options = document.getElementById('options')
+  this.gameover = document.getElementById('gameover')
   this.dom_squares = Array.from(this.board.childNodes).filter(function (node) {
     return (node.nodeType === 1)
   })
@@ -174,6 +198,10 @@ function Game () {
 
   this.states = {}
   this.states.options = new State(this, 'options')
+  this.states.gameover = new State(this, 'gameover')
+
+  this.winnerText = ' wins! \nWinner starts next game.'
+  this.tieText = 'A draw! Fillme starts next game.'
 
   function getSelectedOption (nodelist) {
     // Expect nodelist to be an array of nodes.

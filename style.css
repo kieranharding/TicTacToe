@@ -67,6 +67,15 @@ span:hover {
   display: none;
 }
 
+#gameover {
+  font-size: 2rem;
+  width: 24rem;
+  height: 24rem;
+  margin: 0 auto;
+  padding-top: 20px;
+  display: none;
+}
+
 .square {
   width: 30.6666667%;
   min-height: 30.6666667%;
