@@ -92,7 +92,9 @@ function State (target, name, player) {
 
   if (name === 'gameover') {
     this.entry = function () {
-      var nextTurn = this.target.gameover.innerText.startsWith('O')
+      // Kind of a hackish way to determine who is the winner, but I guess
+      // it will do.
+      var nextTurn = this.target.gameover.innerText.search('O') >= 0
         ? this.target.states.oturn
         : this.target.states.xturn
 
@@ -119,7 +121,12 @@ function State (target, name, player) {
     // end the turn.
 
     this.entry = function () {
-      this.target.turnCount++
+      if (this.target.turnCount++ > 8) {
+        this.target.gameover.innerText = this.target.tieText
+          .replace('Fillme', name.charAt(0).toUpperCase())
+        this.target.changeState(this.target.states.gameover)
+      }
+
       if (player === 'computer') {
         // Computer make a move.
         // Check if game over
@@ -180,6 +187,7 @@ function Game () {
     this.dom_squares.map(function (x) {
       x.innerText = ''
     })
+    this.turnCount = 0
   }
 
   this.startGame = function () {
@@ -191,8 +199,7 @@ function Game () {
 
     this.states.xturn = new State(this, 'xturn', xPlayer)
     this.states.oturn = new State(this, 'oturn', oPlayer)
-    console.log(this.states)
-    this.turnCount = 1
+    this.turnCount = 0
     this.changeState(this.states.xturn)
   }
 
