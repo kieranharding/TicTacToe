@@ -7,6 +7,10 @@ body {
   color: #443;
 }
 
+body div {
+  transition:all 0.3s ease
+}
+
 .title {
   position: relative;
   top: -1em;
@@ -41,16 +45,28 @@ body {
   width: 360px;
   margin: 0 auto;
   display: none;
+  text-align: center;
+  position: relative;
+  left: 4rem;
 }
 
 #options .selected {
   font-weight: bolder;
-  font-size: 1.5em;
+  font-size: 1rem;
+}
+
+#options div {
+  /*margin-bottom: 1rem;*/
+}
+
+#options div span {
+
 }
 
 span:hover {
   font-weight: bolder;
-  font-size: 1.5em;
+  font-size: 1rem;*
+
 }
 
 #start-game {
@@ -65,15 +81,20 @@ span:hover {
   margin: 0 auto;
   padding-top: 20px;
   display: none;
+  position: relative;
+  left: 4rem;
 }
 
 #gameover {
   font-size: 2rem;
-  width: 24rem;
-  height: 24rem;
+  width: 360px;
+  /*height: 24rem;*/
   margin: 0 auto;
   padding-top: 20px;
   display: none;
+  text-align: center;
+  position: relative;
+  left: 4rem;
 }
 
 .square {
