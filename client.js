@@ -61,6 +61,14 @@ function State (target, name, player) {
     return result
   }
 
+  function empty_square (squares) {
+    var int = Math.floor(Math.random() * 9)
+    console.log(squares, int)
+    return squares[int].innerText === ''
+      ? int
+      : empty_square(squares)
+  }
+
   // If name is 'options'
   if (name === 'options') {
     // provide the option of one- or two- players and if player one is x or o
@@ -123,19 +131,28 @@ function State (target, name, player) {
     this.entry = function () {
       if (this.target.turnCount++ > 8) {
         this.target.gameover.innerText = this.target.tieText
-          .replace('Fillme', name.charAt(0).toUpperCase())
+          .replace('Fillme', name.substr(0, 1).toUpperCase())
         this.target.changeState(this.target.states.gameover)
       }
 
       if (player === 'computer') {
         // Computer make a move.
-        // Check if game over
-        // If continuing, go to next turn
-        var nextTurn = name === 'xturn'
-          ? this.target.states.oturn
-          : this.target.states.xturn
+        var t = this.target.dom_squares[empty_square(this.target.dom_squares)]
+        setTimeout(function () {
+          t.innerText = name.substr(0, 1).toUpperCase()
+          // Check if game over
+          if (checkWinner(this.target.dom_squares, t.innerText)) {
+            this.target.gameover.innerText = t.innerText + this.target.winnerText
+            this.target.changeState(this.target.states.gameover)
+          } else {
+            // If continuing, go to next turn
+            var nextTurn = name === 'xturn'
+              ? this.target.states.oturn
+              : this.target.states.xturn
 
-        this.target.changeState(nextTurn)
+            this.target.changeState(nextTurn)
+          }
+        }.bind(this), 500)
       }
     }
 
