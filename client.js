@@ -243,6 +243,7 @@ function run () {
   document.getElementsByClassName('container')[0].addEventListener('click', game.click.bind(game), false)
 }
 
+// This comes from https://plainjs.com/javascript/events/running-code-when-the-document-is-ready-15/
 // in case the document is already rendered
 if (document.readyState !== 'loading') run()
 // modern browsers
